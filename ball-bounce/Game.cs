@@ -1,6 +1,7 @@
 ﻿// Include the namespaces (code libraries) you need below.
 using System;
 using System.Numerics;
+using System.Threading;
 
 // The namespace your code is in.
 namespace MohawkGame2D
@@ -11,6 +12,7 @@ namespace MohawkGame2D
     public class Game
     {
         Ball[] balls = new Ball[100];
+        int count = 0;
         /// <summary>
         ///     Setup runs once before the game loop begins.
         /// </summary>
@@ -32,7 +34,18 @@ namespace MohawkGame2D
         {
             Window.ClearBackground(Color.OffWhite);
 
-            for (int i = 0; i < balls.Length; i++)
+            if (Input.IsKeyboardKeyPressed(KeyboardInput.A))
+            {
+                if (balls.Length < 100)
+                balls[count] = new Ball();
+                count++;
+                if (count > balls.Length)
+                {
+                    count = balls.Length;
+                }
+            }
+
+            for (int i = 0; i < count; i++)
             {
                 // Pull one item out of array
                 Ball ball = balls[i];
@@ -40,6 +53,8 @@ namespace MohawkGame2D
                 ball.MoveBall();
                 ball.DrawBall();
             }
+
+            Text.Draw($"Count: {count}", 10, 10);
         }
     }
 }

@@ -23,6 +23,7 @@ namespace MohawkGame2D
         {
             // This is what happens when a new Ball is created
             color = Random.Color();
+            position = Random.Vector2(Window.Size);
         }
 
         public void AddRandomForceToBall()
