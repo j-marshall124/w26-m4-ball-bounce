@@ -6,16 +6,11 @@ using System.Threading;
 // The namespace your code is in.
 namespace MohawkGame2D
 {
-    /// <summary>
-    ///     Your game code goes inside this class!
-    /// </summary>
     public class Game
     {
         Ball[] balls = new Ball[100];
         int count = 0;
-        /// <summary>
-        ///     Setup runs once before the game loop begins.
-        /// </summary>
+
         public void Setup()
         {
             Window.SetTitle("Ball Bounce");
@@ -27,9 +22,7 @@ namespace MohawkGame2D
                 balls[i] = new Ball();
             }
         }
-        /// <summary>
-        ///     Update runs every frame.
-        /// </summary>
+
         public void Update()
         {
             Window.ClearBackground(Color.OffWhite);
@@ -51,6 +44,7 @@ namespace MohawkGame2D
                 Ball ball = balls[i];
                 ball.AddRandomForceToBall();
                 ball.MoveBall();
+                ball.CollideWithOthers(balls, count);
                 ball.DrawBall();
             }
 
